@@ -1,9 +1,9 @@
 // Global objects
 let gameBoard = {
   // gameBoard.dropToken() method
-  dropToken: function() {
+  dropToken: function () {
     console.log("The dropToken test");
-  }
+  },
 };
 let player = [{}, {}, {}];
 let game = {};
@@ -11,16 +11,18 @@ let board = [];
 
 let gameController = {
   // gameController.playRound() method
-  playRound: function() {
-  }
+  playRound: function () {},
 };
+
+let droppedSign = "";
+let sign = "O";
 
 // THE MODULE PATTERN: IIFEs = Immediately Invoked Function Expression: Visual representation of the game
 // This module will leverage an updateScreen pattern. The purpose of this pattern is to take some data about our game, such as the state of the game board and which player's turn it is, and update the screen each time a player takes their turn.
 const screenController = (function () {
   const x = "";
   const y = "";
-  return {x,y};
+  return { x, y };
 })();
 
 // FACTORY FUNCTION Example
@@ -52,18 +54,23 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-function dropFirstSign() {
-  // select a random number between 0 and 2
-  let randomColumn = getRandomInt(3);
-  console.log(randomColumn);
+function dropSign() {
+  const randomColumn = getRandomInt(3);
   // select the index for the signDrop
-  board[2][randomColumn] = "O";
+  board[2][randomColumn] = sign;
   console.log(board);
-  // select the sign to drop either an O or and X
+  droppedSign = sign;
+  return droppedSign;
+}
+function toggleSign() {
+  if (droppedSign == "O") {
+    sign = "X";
+  } else {
+    sign = "O";
+  }
+  return sign;
 }
 
-dropFirstSign();
-
-
-
-
+dropSign();
+toggleSign();
+dropSign();
