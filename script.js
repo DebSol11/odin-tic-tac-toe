@@ -41,10 +41,9 @@ function createGameBoard() {
   for (let i = 0; i < rows; i++) {
     board[i] = [i];
     for (let j = 0; j < columns; j++) {
-      board[i][j] = [j];
+      board[i][j] = 0;
     }
   }
-  console.log(board);
   return board;
 }
 
@@ -58,10 +57,10 @@ function dropSign() {
   const randomColumn = getRandomInt(3);
   // select the index for the signDrop
   board[2][randomColumn] = sign;
-  console.log(board);
   droppedSign = sign;
   return droppedSign;
 }
+
 function toggleSign() {
   if (droppedSign == "O") {
     sign = "X";
@@ -71,6 +70,48 @@ function toggleSign() {
   return sign;
 }
 
+function rememberDropIndex() {}
+
+function checkForWinner() {
+  if (
+    (board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X") ||
+    (board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X") ||
+    (board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X") ||
+    (board[0][0] == "X" && board[1][0] == "X" && board[2][0] == "X") ||
+    (board[0][1] == "X" && board[1][1] == "X" && board[2][1] == "X") ||
+    (board[0][2] == "X" && board[1][2] == "X" && board[2][2] == "X") ||
+    (board[0][1] == "X" && board[1][1] == "X" && board[2][1] == "X") ||
+    (board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X") ||
+    (board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X")
+  ) {
+    console.log("Player X has won");
+  } else if (
+    (board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O") ||
+    (board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O") ||
+    (board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O") ||
+    (board[0][0] == "O" && board[1][0] == "O" && board[2][0] == "O") ||
+    (board[0][1] == "O" && board[1][1] == "O" && board[2][1] == "O") ||
+    (board[0][2] == "O" && board[1][2] == "O" && board[2][2] == "O") ||
+    (board[0][1] == "O" && board[1][1] == "O" && board[2][1] == "O") ||
+    (board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O") ||
+    (board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O")
+  ) {
+    console.log("Player O has won");
+  } else {
+
+  }
+}
+
+function checkForSign() {
+    if (typeof(board[2][0]) == number && typeof(board[2][1]) == number && typeof(board[2][2]) == number) {
+      const randomColumn = getRandomInt(3);
+      
+    }
+}
+
 dropSign();
 toggleSign();
 dropSign();
+
+console.log(board);
+console.log(typeof(board[0][0]));
