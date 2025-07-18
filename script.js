@@ -56,17 +56,22 @@ function getRandomInt(max) {
 function dropSign() {
   const randomColumn = getRandomInt(3);
   // select the index for the signDrop
-  if (typeof (board[2][randomColumn] == number)) {
+  if (typeof board[2][randomColumn] == "number") {
     board[2][randomColumn] = sign;
-  } else if (typeof (board[2][randomColumn] == string)) {
-    if (typeof board[1][randomColumn] == number) {
+  } else if (typeof board[2][randomColumn] == "string") {
+    if (typeof board[1][randomColumn] == "number") {
       board[1][randomColumn] = sign;
-    } else if (typeof board[1][randomColumn] == string) {
-      if (typeof board[0][randomColumn] == number)
+    } else if (typeof board[1][randomColumn] == "string") {
+      if (typeof board[0][randomColumn] == "number") {
         board[0][randomColumn] = sign;
+      } else {
+        console.log("End of rows reached sucker!");
+      }
     } else {
-      console.log("End of rows reached sucker!");
+      console.log("OOOOOOOH no thi cant be true!");
     }
+  } else {
+    console.log("shit is about to get down!");
   }
 
   droppedSign = sign;
@@ -81,8 +86,6 @@ function toggleSign() {
   }
   return sign;
 }
-
-function rememberDropIndex() {}
 
 function checkForWinner() {
   if (
@@ -113,25 +116,23 @@ function checkForWinner() {
   }
 }
 
-function checkForSign() {
-  if (
-    typeof board[2][0] == number &&
-    typeof board[2][1] == number &&
-    typeof board[2][2] == number
-  ) {
-    const randomColumn = getRandomInt(3);
-  } else if (
-    typeof board[2][0] == string &&
-    typeof board[2][1] == number &&
-    typeof board[2][2] == number
-  ) {
-    const randomColumn = getRandomInt(2);
-  }
-}
-
 dropSign();
 toggleSign();
 dropSign();
+toggleSign();
+dropSign();
+toggleSign();
+dropSign();
+toggleSign();
+dropSign();
+toggleSign();
+dropSign();
+toggleSign();
+dropSign();
+toggleSign();
+dropSign();
+toggleSign();
+dropSign();
+toggleSign();
 
 console.log(board);
-console.log(typeof board[0][0]);
