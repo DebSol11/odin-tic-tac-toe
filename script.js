@@ -68,12 +68,11 @@ function dropSign() {
         console.log("End of rows reached sucker!");
       }
     } else {
-      console.log("OOOOOOOH no thi cant be true!");
+      console.log("OOOOOOOH no this cant be true!");
     }
   } else {
     console.log("shit is about to get down!");
   }
-
   droppedSign = sign;
   return droppedSign;
 }
@@ -116,23 +115,13 @@ function checkForWinner() {
   }
 }
 
-dropSign();
-toggleSign();
-dropSign();
-toggleSign();
-dropSign();
-toggleSign();
-dropSign();
-toggleSign();
-dropSign();
-toggleSign();
-dropSign();
-toggleSign();
-dropSign();
-toggleSign();
-dropSign();
-toggleSign();
-dropSign();
-toggleSign();
+function playUntilEnd() {
+  do {
+    dropSign();
+      toggleSign();
+  } while (typeof board[0][0] == "number" || typeof board[0][1] == "number" || typeof board[0][2] == "number")
+} 
+
+playUntilEnd();
 
 console.log(board);
