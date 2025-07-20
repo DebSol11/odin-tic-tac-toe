@@ -17,6 +17,7 @@ let gameController = {
 let droppedSign = "";
 let sign = "O";
 let winnerVariable = false;
+let randomColumn = "";
 
 // THE MODULE PATTERN: IIFEs = Immediately Invoked Function Expression: Visual representation of the game
 // This module will leverage an updateScreen pattern. The purpose of this pattern is to take some data about our game, such as the state of the game board and which player's turn it is, and update the screen each time a player takes their turn.
@@ -55,7 +56,7 @@ function getRandomInt(max) {
 }
 
 function dropSign() {
-  const randomColumn = getRandomInt(3);
+  randomColumn = getRandomInt(3);
   // select the index for the signDrop
   if (typeof board[2][randomColumn] == "number") {
     board[2][randomColumn] = sign;
@@ -66,6 +67,8 @@ function dropSign() {
       if (typeof board[0][randomColumn] == "number") {
         board[0][randomColumn] = sign;
       } else {
+        // Here is a bug.
+        // Track down the bug and fix it
         console.log("End of rows reached sucker!");
       }
     } else {
@@ -114,12 +117,16 @@ function checkForWinner() {
   ) {
     console.log("Player O has won");
     winnerVariable = true;
-  } else {
-    // playUntilEnd();
-    console.log("It's a maybe a draw");
-    // winnerVariable = true;
   }
+  // else {
+  //   // playUntilEnd();
+  //   console.log("It's a maybe a draw");
+  //   // winnerVariable = true;
+  // }
 }
+
+// Create checkForDraw() function
+function checkForDraw() {}
 
 function play() {
   do {
