@@ -113,11 +113,11 @@ function checkForWinner() {
     (board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O")
   ) {
     console.log("Player O has won");
-    winnerVariable = true; 
+    winnerVariable = true;
   } else {
-    playUntilEnd();
-    console.log("It's a draw");
-    winnerVariable = true; 
+    // playUntilEnd();
+    console.log("It's a maybe a draw");
+    // winnerVariable = true;
   }
 }
 
@@ -126,9 +126,7 @@ function play() {
     dropSign();
     toggleSign();
     checkForWinner();
-  } while (
-    winnerVariable == false
-  );
+  } while (winnerVariable == false);
 }
 
 function playUntilEnd() {
