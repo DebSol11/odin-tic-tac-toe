@@ -142,4 +142,5 @@ function playUntilEnd() {
   );
 }
 
+play();
 console.log(board);
