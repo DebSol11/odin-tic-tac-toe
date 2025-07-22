@@ -119,34 +119,29 @@ function checkForWinner() {
   ) {
     console.log("Player O has won");
     winnerVariable = true;
+  } else if (
+    typeof board[0][0] == "string" &&
+    typeof board[0][1] == "string" &&
+    typeof board[0][2] == "string"
+  ) {
+    console.log("It's a draw");
+    winnerVariable = true;
   }
-  // else {
-  //   // playUntilEnd();
-  //   console.log("It's a maybe a draw");
-  //   // winnerVariable = true;
-  // }
 }
 
-// Create checkForDraw() function
-function checkForDraw() {}
-
+// Game logic bug! See that the sign to drop is always alternating 
+// even if the end of one row is reached sucker
 function play() {
   do {
     dropSign();
     toggleSign();
     checkForWinner();
   } while (winnerVariable == false && endOfRowsVariable == false);
-}
-
-function playUntilEnd() {
   do {
     dropSign();
     toggleSign();
-  } while (
-    typeof board[0][0] == "number" ||
-    typeof board[0][1] == "number" ||
-    typeof board[0][2] == "number"
-  );
+    checkForWinner();
+  } while (winnerVariable == false && endOfRowsVariable == true);
 }
 
 play();
