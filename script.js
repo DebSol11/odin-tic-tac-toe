@@ -14,6 +14,8 @@ let gameController = {
   playRound: function () {},
 };
 
+const rows = 3;
+const columns = 3;
 let droppedSign = "";
 let sign = "O";
 let winnerVariable = false;
@@ -38,8 +40,6 @@ const screenController = (function () {
 // Nested-loop technique to create a 2d array.
 // Initialize it with the indices of rows and columns
 function createGameBoard() {
-  const rows = 3;
-  const columns = 3;
   // const board = [];
 
   for (let i = 0; i < rows; i++) {
@@ -146,12 +146,12 @@ function play() {
       console.log(sign);
     } while (winnerVariable == false && endOfRowsVariable == false);
     if (endGameVariable == false) {
-    do {
-      dropSign();
-      toggleSign();
-      checkForWinner();
-      console.log(sign);
-    } while (winnerVariable == false && endOfRowsVariable == true);
+      do {
+        dropSign();
+        toggleSign();
+        checkForWinner();
+        console.log(sign);
+      } while (winnerVariable == false && endOfRowsVariable == true);
     }
   }
 }
@@ -163,10 +163,15 @@ console.log(board);
 const boardSelector = document.querySelector(".board");
 
 function displayBoard() {
-  for (let i = 0; i < board.length; i++) {
-    let p = document.createElement("p");
-    p.textContent = board[i];
-    boardSelector.appendChild(p);
+  for (let i = 0; i < rows; i++) {
+    let divContainer = document.createElement("div");
+    divContainer.setAttribute("class", "container");
+    boardSelector.appendChild(divContainer);
+    for (let j = 0; j < columns; j++) {
+      let p = document.createElement("p");
+      p.textContent = board[i][j];
+      divContainer.appendChild(p);
+    }
   }
 }
 
