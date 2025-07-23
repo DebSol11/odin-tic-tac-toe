@@ -69,12 +69,17 @@ function dropSign() {
         board[0][randomColumn] = sign;
       } else if (typeof board[0][randomColumn] == "string") {
         console.log("End of rows reached sucker!");
+        // if (sign = "O") {
+        //   sign = "X";
+        // } else {
+        //   sign = "O";
+        // }
         endOfRowsVariable = true;
         // Here is a bug.
         // Track down the bug and fix it
       }
     } else {
-      console.log("OOOOOOOH no this cant be true!");
+      console.log("OOOOOOOH no this can't be true!");
     }
   } else {
     console.log("shit is about to get down!");
@@ -84,10 +89,21 @@ function dropSign() {
 }
 
 function toggleSign() {
-  if (droppedSign == "O") {
+  // if (droppedSign == "O") {
+  //   sign = "X";
+  // } else {
+  //   sign = "O";
+  // }
+  if (droppedSign == "O" && endOfRowsVariable == false) {
     sign = "X";
-  } else {
+  } else if (droppedSign == "O" && endOfRowsVariable == true) {
     sign = "O";
+    endOfRowsVariable = false;
+  } else if (droppedSign == "X" && endOfRowsVariable == false) {
+    sign = "O";
+  } else if (droppedSign == "X" && endOfRowsVariable == true) {
+    sign = "X";
+    endOfRowsVariable = false;
   }
   return sign;
 }
@@ -129,19 +145,24 @@ function checkForWinner() {
   }
 }
 
-// Game logic bug! See that the sign to drop is always alternating 
+// Game logic bug! See that the sign to drop is always alternating
 // even if the end of one row is reached sucker
 function play() {
   do {
     dropSign();
     toggleSign();
     checkForWinner();
+    console.log(sign);
   } while (winnerVariable == false && endOfRowsVariable == false);
   do {
     dropSign();
     toggleSign();
     checkForWinner();
+    console.log(sign);
   } while (winnerVariable == false && endOfRowsVariable == true);
+  if (winnerVariable == true) {
+    console.log(checkForWinner());
+  }
 }
 
 play();
