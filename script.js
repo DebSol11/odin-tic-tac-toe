@@ -158,3 +158,16 @@ function play() {
 
 play();
 console.log(board);
+
+// selectors
+const boardSelector = document.querySelector(".board");
+
+function displayBoard() {
+  for (let i = 0; i < board.length; i++) {
+    let p = document.createElement("p");
+    p.textContent = board[i];
+    boardSelector.appendChild(p);
+  }
+}
+
+displayBoard();
