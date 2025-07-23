@@ -19,6 +19,7 @@ let sign = "O";
 let winnerVariable = false;
 let randomColumn = "";
 let endOfRowsVariable = false;
+let endGameVariable = false;
 
 // THE MODULE PATTERN: IIFEs = Immediately Invoked Function Expression: Visual representation of the game
 // This module will leverage an updateScreen pattern. The purpose of this pattern is to take some data about our game, such as the state of the game board and which player's turn it is, and update the screen each time a player takes their turn.
@@ -69,14 +70,7 @@ function dropSign() {
         board[0][randomColumn] = sign;
       } else if (typeof board[0][randomColumn] == "string") {
         console.log("End of rows reached sucker!");
-        // if (sign = "O") {
-        //   sign = "X";
-        // } else {
-        //   sign = "O";
-        // }
         endOfRowsVariable = true;
-        // Here is a bug.
-        // Track down the bug and fix it
       }
     } else {
       console.log("OOOOOOOH no this can't be true!");
@@ -89,11 +83,6 @@ function dropSign() {
 }
 
 function toggleSign() {
-  // if (droppedSign == "O") {
-  //   sign = "X";
-  // } else {
-  //   sign = "O";
-  // }
   if (droppedSign == "O" && endOfRowsVariable == false) {
     sign = "X";
   } else if (droppedSign == "O" && endOfRowsVariable == true) {
@@ -122,6 +111,7 @@ function checkForWinner() {
   ) {
     console.log("Player X has won");
     winnerVariable = true;
+    endGameVariable = true;
   } else if (
     (board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O") ||
     (board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O") ||
@@ -135,6 +125,7 @@ function checkForWinner() {
   ) {
     console.log("Player O has won");
     winnerVariable = true;
+    endGameVariable = true;
   } else if (
     typeof board[0][0] == "string" &&
     typeof board[0][1] == "string" &&
@@ -142,26 +133,26 @@ function checkForWinner() {
   ) {
     console.log("It's a draw");
     winnerVariable = true;
+    endGameVariable = true;
   }
 }
 
-// Game logic bug! See that the sign to drop is always alternating
-// even if the end of one row is reached sucker
 function play() {
-  do {
-    dropSign();
-    toggleSign();
-    checkForWinner();
-    console.log(sign);
-  } while (winnerVariable == false && endOfRowsVariable == false);
-  do {
-    dropSign();
-    toggleSign();
-    checkForWinner();
-    console.log(sign);
-  } while (winnerVariable == false && endOfRowsVariable == true);
-  if (winnerVariable == true) {
-    console.log(checkForWinner());
+  if (endGameVariable == false) {
+    do {
+      dropSign();
+      toggleSign();
+      checkForWinner();
+      console.log(sign);
+    } while (winnerVariable == false && endOfRowsVariable == false);
+    if (endGameVariable == false) {
+    do {
+      dropSign();
+      toggleSign();
+      checkForWinner();
+      console.log(sign);
+    } while (winnerVariable == false && endOfRowsVariable == true);
+    }
   }
 }
 
