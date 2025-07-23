@@ -164,13 +164,14 @@ const boardSelector = document.querySelector(".board");
 
 function displayBoard() {
   for (let i = 0; i < rows; i++) {
-    let divContainer = document.createElement("div");
-    divContainer.setAttribute("class", "container");
-    boardSelector.appendChild(divContainer);
+    let boardContainer = document.createElement("div");
+    boardContainer.setAttribute("class", "boardContainer");
+    boardSelector.appendChild(boardContainer);
     for (let j = 0; j < columns; j++) {
-      let p = document.createElement("p");
-      p.textContent = board[i][j];
-      divContainer.appendChild(p);
+      let individualField = document.createElement("p");
+      individualField.setAttribute("class", "individualField");
+      individualField.textContent = board[i][j];
+      boardContainer.appendChild(individualField);
     }
   }
 }
