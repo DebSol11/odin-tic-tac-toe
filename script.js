@@ -1,21 +1,9 @@
 // PLEASE, BY ANY MEANS, DO NOT COPY OR LEARN FROM THIS CODE! THIS IS A FRIENDLY COMMAND!
 
 // Global objects
-let gameBoard = {
-  // gameBoard.dropToken() method
-  dropToken: function () {
-    console.log("The dropToken test");
-  },
-};
-let player = [{}, {}, {}];
-let game = {};
 let board = [];
 
-let gameController = {
-  // gameController.playRound() method
-  playRound: function () {},
-};
-
+// Global variables
 const rows = 3;
 const columns = 3;
 let droppedSign = "";
@@ -26,25 +14,7 @@ let endOfRowsVariable = false;
 let endGameVariable = false;
 let counter = -1;
 
-// THE MODULE PATTERN: IIFEs = Immediately Invoked Function Expression: Visual representation of the game
-// This module will leverage an updateScreen pattern. The purpose of this pattern is to take some data about our game, such as the state of the game board and which player's turn it is, and update the screen each time a player takes their turn.
-const screenController = (function () {
-  const x = "";
-  const y = "";
-  return { x, y };
-})();
-
-// FACTORY FUNCTION Example
-// function createUser (name) {
-//   const discordName = "@" + name;
-//   return { name, discordName };
-// }
-
-// Nested-loop technique to create a 2d array.
-// Initialize it with the indices of rows and columns
 function createGameBoard() {
-  // const board = [];
-
   for (let i = 0; i < rows; i++) {
     board[i] = [i];
     for (let j = 0; j < columns; j++) {
@@ -58,46 +28,6 @@ createGameBoard();
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
-}
-
-function dropSign() {
-  randomColumn = getRandomInt(3);
-  // select the index for the signDrop
-  if (typeof board[2][randomColumn] == "number") {
-    board[2][randomColumn] = sign;
-  } else if (typeof board[2][randomColumn] == "string") {
-    if (typeof board[1][randomColumn] == "number") {
-      board[1][randomColumn] = sign;
-    } else if (typeof board[1][randomColumn] == "string") {
-      if (typeof board[0][randomColumn] == "number") {
-        board[0][randomColumn] = sign;
-      } else if (typeof board[0][randomColumn] == "string") {
-        console.log("End of rows reached sucker!");
-        endOfRowsVariable = true;
-      }
-    } else {
-      console.log("OOOOOOOH no this can't be true!");
-    }
-  } else {
-    console.log("shit is about to get down!");
-  }
-  droppedSign = sign;
-  return droppedSign;
-}
-
-function toggleSign() {
-  if (droppedSign == "O" && endOfRowsVariable == false) {
-    sign = "X";
-  } else if (droppedSign == "O" && endOfRowsVariable == true) {
-    sign = "O";
-    endOfRowsVariable = false;
-  } else if (droppedSign == "X" && endOfRowsVariable == false) {
-    sign = "O";
-  } else if (droppedSign == "X" && endOfRowsVariable == true) {
-    sign = "X";
-    endOfRowsVariable = false;
-  }
-  return sign;
 }
 
 function checkForWinner() {
@@ -146,28 +76,6 @@ function checkForWinner() {
   }
 }
 
-function play() {
-  if (endGameVariable == false) {
-    do {
-      dropSign();
-      toggleSign();
-      checkForWinner();
-      console.log(sign);
-    } while (winnerVariable == false && endOfRowsVariable == false);
-    if (endGameVariable == false) {
-      do {
-        dropSign();
-        toggleSign();
-        checkForWinner();
-        console.log(sign);
-      } while (winnerVariable == false && endOfRowsVariable == true);
-    }
-  }
-}
-
-// play();
-console.log(board);
-
 // selectors
 const boardSelector = document.querySelector(".board");
 
@@ -183,7 +91,7 @@ function displayBoard() {
       individualField.setAttribute("class", "individualField");
 
       individualField.addEventListener("click", (e) => {
-        if (winnerVariable === false) {
+        if (winnerVariable === false && e.target.innerHTML == 0) {
           e.target.innerHTML = sign;
           if (individualField.id == 0) {
             board[0][0] = sign;
