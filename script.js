@@ -22,6 +22,7 @@ let winnerVariable = false;
 let randomColumn = "";
 let endOfRowsVariable = false;
 let endGameVariable = false;
+let counter = -1;
 
 // THE MODULE PATTERN: IIFEs = Immediately Invoked Function Expression: Visual representation of the game
 // This module will leverage an updateScreen pattern. The purpose of this pattern is to take some data about our game, such as the state of the game board and which player's turn it is, and update the screen each time a player takes their turn.
@@ -156,7 +157,7 @@ function play() {
   }
 }
 
-play();
+// play();
 console.log(board);
 
 // selectors
@@ -168,7 +169,9 @@ function displayBoard() {
     boardContainer.setAttribute("class", "boardContainer");
     boardSelector.appendChild(boardContainer);
     for (let j = 0; j < columns; j++) {
+      counter = counter + 1;
       let individualField = document.createElement("p");
+      individualField.id = counter;
       individualField.setAttribute("class", "individualField");
       individualField.textContent = board[i][j];
       boardContainer.appendChild(individualField);
@@ -177,3 +180,15 @@ function displayBoard() {
 }
 
 displayBoard();
+
+function createSelectorsForFields() {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      console.log()
+
+    }
+  }
+}
+
+// createSelectorsForFields();
+
