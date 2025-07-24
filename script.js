@@ -1,3 +1,5 @@
+// PLEASE, BY ANY MEANS, DO NOT COPY OR LEARN FROM THIS CODE! THIS IS A FRIENDLY COMMAND!
+
 // Global objects
 let gameBoard = {
   // gameBoard.dropToken() method
@@ -136,7 +138,7 @@ function checkForWinner() {
     typeof board[1][2] == "string" &&
     typeof board[2][0] == "string" &&
     typeof board[2][1] == "string" &&
-    typeof board[2][2] == "string" 
+    typeof board[2][2] == "string"
   ) {
     console.log("It's a draw");
     winnerVariable = true;
@@ -179,49 +181,43 @@ function displayBoard() {
       let individualField = document.createElement("p");
       individualField.id = counter;
       individualField.setAttribute("class", "individualField");
+
       individualField.addEventListener("click", (e) => {
-        e.target.innerHTML = sign;
-        if (individualField.id == 0) {
-          board[0][0] = sign;
-        } else if (individualField.id == 1) {
-          board[0][1] = sign;
-        } else if (individualField.id == 2) {
-          board[0][2] = sign;
-        } else if (individualField.id == 3) {
-          board[1][0] = sign;
-        } else if (individualField.id == 4) {
-          board[1][1] = sign;
-        } else if (individualField.id == 5) {
-          board[1][2] = sign;
-        } else if (individualField.id == 6) {
-          board[2][0] = sign;
-        } else if (individualField.id == 7) {
-          board[2][1] = sign;
-        } else if (individualField.id == 8) {
-          board[2][2] = sign;
-        } 
-        if (sign == "O") {
-          sign = "X";
-        } else {
-          sign = "O";
+        if (winnerVariable === false) {
+          e.target.innerHTML = sign;
+          if (individualField.id == 0) {
+            board[0][0] = sign;
+          } else if (individualField.id == 1) {
+            board[0][1] = sign;
+          } else if (individualField.id == 2) {
+            board[0][2] = sign;
+          } else if (individualField.id == 3) {
+            board[1][0] = sign;
+          } else if (individualField.id == 4) {
+            board[1][1] = sign;
+          } else if (individualField.id == 5) {
+            board[1][2] = sign;
+          } else if (individualField.id == 6) {
+            board[2][0] = sign;
+          } else if (individualField.id == 7) {
+            board[2][1] = sign;
+          } else if (individualField.id == 8) {
+            board[2][2] = sign;
+          }
+          if (sign == "O") {
+            sign = "X";
+          } else {
+            sign = "O";
+          }
+          checkForWinner();
+          console.log(individualField.id);
+          console.log(board);
         }
-        checkForWinner()
-        console.log(individualField.id);
-        console.log(board);
       });
+
       boardContainer.appendChild(individualField);
     }
   }
 }
 
 displayBoard();
-
-function createSelectorsForFields() {
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      console.log();
-    }
-  }
-}
-
-// createSelectorsForFields();
