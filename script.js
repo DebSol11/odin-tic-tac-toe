@@ -130,7 +130,13 @@ function checkForWinner() {
   } else if (
     typeof board[0][0] == "string" &&
     typeof board[0][1] == "string" &&
-    typeof board[0][2] == "string"
+    typeof board[0][2] == "string" &&
+    typeof board[1][0] == "string" &&
+    typeof board[1][1] == "string" &&
+    typeof board[1][2] == "string" &&
+    typeof board[2][0] == "string" &&
+    typeof board[2][1] == "string" &&
+    typeof board[2][2] == "string" 
   ) {
     console.log("It's a draw");
     winnerVariable = true;
@@ -199,7 +205,7 @@ function displayBoard() {
         } else {
           sign = "O";
         }
-        
+        checkForWinner()
         console.log(individualField.id);
         console.log(board);
       });
