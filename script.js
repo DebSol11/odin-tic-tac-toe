@@ -91,7 +91,7 @@ function displayBoard() {
       individualField.setAttribute("class", "individualField");
 
       individualField.addEventListener("click", (e) => {
-        if (winnerVariable === false && e.target.innerHTML == 0) {
+        if (winnerVariable === false && e.target.textContent == 0) {
           e.target.innerHTML = sign;
           if (individualField.id == 0) {
             board[0][0] = sign;
