@@ -25,3 +25,15 @@
     width: 20px;
     text-align: center;
 }
+
+#refresh-site-btn {
+    display: block;
+    padding: 10px;
+    border: none;
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
