@@ -128,12 +128,12 @@ function displayBoard() {
   }
 }
 
-// const restartButton = document.querySelector("#refresh-site-btn");
+const restartButton = document.querySelector("#refresh-site-btn");
 
-// restartButton.addEventListener("click", restartGame());
+restartButton.addEventListener("click", restartGame);
 
-// function restartGame() {
-//   window.location.reload();
-// }
+function restartGame() {
+  window.location.reload();
+}
 
 displayBoard();
