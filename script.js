@@ -13,6 +13,7 @@ let randomColumn = "";
 let endOfRowsVariable = false;
 let endGameVariable = false;
 let counter = -1;
+let playerOName = "";
 
 function createGameBoard() {
   for (let i = 0; i < rows; i++) {
@@ -128,12 +129,21 @@ function displayBoard() {
   }
 }
 
+// Restart Button implementation
 const restartButton = document.querySelector("#refresh-site-btn");
-
 restartButton.addEventListener("click", restartGame);
-
 function restartGame() {
   window.location.reload();
 }
+
+const playerOInput = document.getElementById("player_O");
+
+playerOInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    playerOName = playerOInput.value;
+  }
+});
+
+console.log(playerOName);
 
 displayBoard();

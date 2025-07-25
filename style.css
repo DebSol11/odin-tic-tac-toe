@@ -44,6 +44,10 @@
     margin-bottom: 5px;
 }
 
+label {
+    margin-right: 5px;
+}
+
 h1.turn {
     text-align: center;
     margin-bottom: 5px;
@@ -57,3 +61,4 @@ h1.turn {
     margin-top: 5px;
     text-align: center;
 }
+

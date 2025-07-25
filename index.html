@@ -11,19 +11,27 @@
     <div class="container">
       <button id="refresh-site-btn">Restart Game</button>
       <div class="playerWrap">
-        <h2 class="turn">Player "O" name: </h2>
-        <input type="text">
+        <label for="player_O">Player "O" name: </label>
+        <input
+          type="text"
+          id="player_O"
+          placeholder="Anna..."
+          name="player_O_name"
+        />
       </div>
-      <div class="playerWrap">
-        <h2>Player "X" name: </h2>
-        <input type="text" name="" id="">
-      </div>
+      <form action="example.com/path" method="post" class="playerWrap">
+        <label for="player_X">Player "X" name: </label>
+        <input
+          type="text"
+          id="player_X"
+          placeholder="Otto..."
+          name="player_X_name"
+        />
+      </form>
       <h1 class="turn">It's ...(update based on input) turn</h1>
       <p id="instrution-message">If you wish to play, than click a field.</p>
-      <div class="board">
-      </div>
-      <h1 id="winner-message">
-        (Name of the Player ...) has won || draw     </h1>
+      <div class="board"></div>
+      <h1 id="winner-message">(Name of the Player ...) has won || draw</h1>
     </div>
   </body>
 </html>
