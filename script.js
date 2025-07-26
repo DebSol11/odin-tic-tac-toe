@@ -14,6 +14,7 @@ let endOfRowsVariable = false;
 let endGameVariable = false;
 let counter = -1;
 let playerOName = "";
+let playerXName = "";
 
 function createGameBoard() {
   for (let i = 0; i < rows; i++) {
@@ -141,9 +142,20 @@ const playerOInput = document.getElementById("player_O");
 playerOInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     playerOName = playerOInput.value;
+    console.log(`Player "O" name: ${playerOName}`);
   }
 });
 
-console.log(playerOName);
+const playerXInput = document.getElementById("player_X");
+
+playerXInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    playerXName = playerXInput.value;
+    console.log(`Player "X" name: ${playerXName}`);
+  }
+});
+
+const currentPlayer = document.querySelector(".turn");
+currentPlayer.textContent = ``;
 
 displayBoard();
