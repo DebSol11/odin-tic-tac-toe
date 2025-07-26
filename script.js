@@ -137,25 +137,27 @@ function restartGame() {
   window.location.reload();
 }
 
-const playerOInput = document.getElementById("player_O");
+const currentPlayer = document.querySelector(".turn");
 
+const playerOInput = document.getElementById("player_O");
 playerOInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     playerOName = playerOInput.value;
     console.log(`Player "O" name: ${playerOName}`);
   }
+  return playerOName;
 });
 
 const playerXInput = document.getElementById("player_X");
-
 playerXInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     playerXName = playerXInput.value;
     console.log(`Player "X" name: ${playerXName}`);
   }
+  return playerXName;
 });
 
-const currentPlayer = document.querySelector(".turn");
-currentPlayer.textContent = ``;
+/// Blah
+currentPlayer.textContent = `It's ${playerOName}'s turn`;
 
 displayBoard();
