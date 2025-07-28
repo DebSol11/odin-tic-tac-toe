@@ -128,7 +128,7 @@ function displayBoard() {
           } else {
             sign = "O";
           }
-          displayTurn()
+          displayTurn();
           checkForWinner();
           console.log(individualField.id);
           console.log(board);
@@ -149,27 +149,26 @@ function restartGame() {
 
 const playerOInput = document.getElementById("player_O");
 playerOInput.addEventListener("keyup", () => {
-    playerOName = playerOInput.value;
-    console.log(`Player "O" name: ${playerOName}`);
-    displayTurn()
-  })
-  
-const playerXInput = document.getElementById("player_X");
-playerXInput.addEventListener("keyup", () => {
-    playerXName = playerXInput.value;
-    console.log(`Player "X" name: ${playerXName}`);
-    displayTurn()
+  playerOName = playerOInput.value;
+  console.log(`Player "O" name: ${playerOName}`);
+  displayTurn();
 });
 
-function displayTurn () {
+const playerXInput = document.getElementById("player_X");
+playerXInput.addEventListener("keyup", () => {
+  playerXName = playerXInput.value;
+  console.log(`Player "X" name: ${playerXName}`);
+  displayTurn();
+});
+
+function displayTurn() {
   if (sign == "O") {
     currentPlayer.textContent = `It's ${playerOName}'s turn`;
   } else if (sign == "X") {
     currentPlayer.textContent = `It's ${playerXName}'s turn`;
   } else {
-    currentPlayer.textContent = `OH Jesus Maria why is this happening?`
+    currentPlayer.textContent = `OH Jesus Maria why is this happening?`;
   }
 }
-
 
 displayBoard();
