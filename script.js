@@ -32,6 +32,9 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+const currentPlayer = document.querySelector(".turn");
+let winnerMessage = document.querySelector("#winner-message");
+
 function checkForWinner() {
   if (
     (board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X") ||
@@ -44,6 +47,8 @@ function checkForWinner() {
     (board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X") ||
     (board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X")
   ) {
+    winnerMessage = winnerMessage.textContent = `${playerXName} has won`;
+    currentPlayer.textContent = `Game Over`;
     console.log("Player X has won");
     winnerVariable = true;
     endGameVariable = true;
@@ -58,6 +63,8 @@ function checkForWinner() {
     (board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O") ||
     (board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O")
   ) {
+    winnerMessage = winnerMessage.textContent = `${playerOName} has won`;
+    currentPlayer.textContent = `Game Over`;
     console.log("Player O has won");
     winnerVariable = true;
     endGameVariable = true;
@@ -72,6 +79,8 @@ function checkForWinner() {
     typeof board[2][1] == "string" &&
     typeof board[2][2] == "string"
   ) {
+    winnerMessage = winnerMessage.textContent = `It's a draw`;
+    currentPlayer.textContent = `Game Over`;
     console.log("It's a draw");
     winnerVariable = true;
     endGameVariable = true;
@@ -80,7 +89,6 @@ function checkForWinner() {
 
 // selectors
 const boardSelector = document.querySelector(".board");
-const currentPlayer = document.querySelector(".turn");
 
 function displayBoard() {
   for (let i = 0; i < rows; i++) {
@@ -120,8 +128,8 @@ function displayBoard() {
           } else {
             sign = "O";
           }
-          checkForWinner();
           displayTurn()
+          checkForWinner();
           console.log(individualField.id);
           console.log(board);
         }
