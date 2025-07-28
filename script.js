@@ -13,8 +13,8 @@ let randomColumn = "";
 let endOfRowsVariable = false;
 let endGameVariable = false;
 let counter = -1;
-let playerOName = "";
-let playerXName = "";
+let playerOName = `Player "O"`;
+let playerXName = `Player "X"`;
 
 function createGameBoard() {
   for (let i = 0; i < rows; i++) {
@@ -80,6 +80,7 @@ function checkForWinner() {
 
 // selectors
 const boardSelector = document.querySelector(".board");
+const currentPlayer = document.querySelector(".turn");
 
 function displayBoard() {
   for (let i = 0; i < rows; i++) {
@@ -120,6 +121,7 @@ function displayBoard() {
             sign = "O";
           }
           checkForWinner();
+          displayTurn()
           console.log(individualField.id);
           console.log(board);
         }
@@ -137,27 +139,29 @@ function restartGame() {
   window.location.reload();
 }
 
-const currentPlayer = document.querySelector(".turn");
-
 const playerOInput = document.getElementById("player_O");
-playerOInput.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
+playerOInput.addEventListener("keyup", () => {
     playerOName = playerOInput.value;
     console.log(`Player "O" name: ${playerOName}`);
-  }
-  return playerOName;
-});
-
+    displayTurn()
+  })
+  
 const playerXInput = document.getElementById("player_X");
-playerXInput.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
+playerXInput.addEventListener("keyup", () => {
     playerXName = playerXInput.value;
     console.log(`Player "X" name: ${playerXName}`);
-  }
-  return playerXName;
+    displayTurn()
 });
 
-/// Blah
-currentPlayer.textContent = `It's ${playerOName}'s turn`;
+function displayTurn () {
+  if (sign == "O") {
+    currentPlayer.textContent = `It's ${playerOName}'s turn`;
+  } else if (sign == "X") {
+    currentPlayer.textContent = `It's ${playerXName}'s turn`;
+  } else {
+    currentPlayer.textContent = `OH Jesus Maria why is this happening?`
+  }
+}
+
 
 displayBoard();
